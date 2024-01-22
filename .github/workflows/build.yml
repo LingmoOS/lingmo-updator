@@ -47,5 +47,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ${{ github.workspace }}
-        asset_name: *.deb
+        asset_name: lingmo-updator-*
         asset_content_type: application/deb
