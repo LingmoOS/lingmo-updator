@@ -8,7 +8,6 @@
         <file>images/laptop.png</file>
         <file>images/logo.png</file>
         <file>images/check_failed.svg</file>
-        <file>images/update.png</file>
         <file>images/done.svg</file>
     </qresource>
 </RCC>

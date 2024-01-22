@@ -1,17 +1,15 @@
-# CuteOS Updator
+# LingmoOS 更新
 
-[![Build](https://github.com/Cute-OS/updator/actions/workflows/build.yml/badge.svg)](https://github.com/Cute-OS/updator/actions/workflows/build.yml)
+LingmoOS系统更新工具。
 
-CuteOS system update tool.
+## 依赖包
 
-## Dependencies
-
-Debian/Ubuntu Dependencies:
+Debian/Ubuntu 依赖包:
 ```shell
 sudo apt install cmake libqapt-dev
 ```
 
-## Build
+## 构建
 
 ```shell
 mkdir build

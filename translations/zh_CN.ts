@@ -29,17 +29,17 @@
     <message>
         <location filename="../HomePage.qml" line="65"/>
         <source>Checking for updates...</source>
-        <translation>正在启动更新...</translation>
+        <translation>正在检查更新...</translation>
     </message>
     <message>
         <location filename="../HomePage.qml" line="80"/>
         <source>Check for update failure</source>
-        <translation>检查更新</translation>
+        <translation>检查更新失败</translation>
     </message>
     <message>
         <location filename="../HomePage.qml" line="123"/>
         <source>Recheck</source>
-        <translation>开始检查更新</translation>
+        <translation>重新检查</translation>
     </message>
 </context>
 <context>

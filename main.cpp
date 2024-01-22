@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2024 LingmoOS Team.
  *
- * Author:     Kate Leet <kate@cuteos.com>
+ * Author:     Kate Leet <kate@lingmoos.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,17 +36,17 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    const char *uri = "Cute.Updator";
+    const char *uri = "Lingmo.Updator";
     qmlRegisterType<UpdatorHelper>(uri, 1, 0, "Updator");
     qmlRegisterType<UpgradeableModel>(uri, 1, 0, "UpgradeableModel");
 
-    if (!QDBusConnection::sessionBus().registerService("com.cute.UpdatorGui")) {
+    if (!QDBusConnection::sessionBus().registerService("com.lingmo.UpdatorGui")) {
         return 0;
     }
 
     // Translations
     QLocale locale;
-    QString qmFilePath = QString("%1/%2.qm").arg("/usr/share/cute-updator/translations/").arg(locale.name());
+    QString qmFilePath = QString("%1/%2.qm").arg("/usr/share/lingmo-updator/translations/").arg(locale.name());
     if (QFile::exists(qmFilePath)) {
         QTranslator *translator = new QTranslator(QGuiApplication::instance());
         if (translator->load(qmFilePath)) {

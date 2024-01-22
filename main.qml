@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2024 LingmoOS Team.
  *
- * Author:     Kate Leet <kate@cuteos.com>
+ * Author:     Kate Leet <kate@lingmoos.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,10 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-import CuteUI 1.0 as CuteUI
-import Cute.Updator 1.0
+import LingmoUI 1.0 as LingmoUI
+import Lingmo.Updator 1.0
 
-CuteUI.Window {
+LingmoUI.Window {
     id: rootWindow
     width: 640
     height: 480
@@ -32,7 +32,7 @@ CuteUI.Window {
     maximumWidth: 640
     maximumHeight: 480
     visible: true
-    title: qsTr("Software update")
+    title: qsTr("System update")
 
     minimizeButtonVisible: false
 

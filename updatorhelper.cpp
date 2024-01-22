@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2024 LingmoOS Team.
  *
- * Author:     Kate Leet <kate@cuteos.com>
+ * Author:     Kate Leet <kate@lingmoos.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@
 #include <QTimer>
 #include <QDebug>
 
-const static QString s_dbusName = "com.cute.Session";
+const static QString s_dbusName = "com.lingmo.Session";
 const static QString s_pathName = "/Session";
-const static QString s_interfaceName = "com.cute.Session";
+const static QString s_interfaceName = "com.lingmo.Session";
 
 UpdatorHelper::UpdatorHelper(QObject *parent)
     : QObject(parent)
@@ -37,8 +37,8 @@ UpdatorHelper::UpdatorHelper(QObject *parent)
 {
     m_backend->init();
 
-    QSettings settings("/etc/cute", QSettings::IniFormat);
-    m_currentVersion = settings.value("Version").toString();
+    QSettings settings("/etc/os-release",QSettings::IniFormat);
+    m_currentVersion = settings.value("PRETTY_NAME").toString();
 
     QTimer::singleShot(100, this, &UpdatorHelper::checkUpdates);
 }
@@ -102,6 +102,15 @@ void UpdatorHelper::checkUpdates()
     m_trans->run();
 }
 
+/**
+ * @brief Starts the upgrade process.
+ *
+ * This function starts the upgrade process by creating a transaction object and running it.
+ * The status of the transaction is monitored using the statusChanged() and statusDetailsChanged() signals.
+ * If the upgrade is successful, the system is rebooted using the reboot() function.
+ *
+ * @return True if the upgrade was successful, false otherwise.
+ */
 void UpdatorHelper::upgrade()
 {
     if (m_trans) {

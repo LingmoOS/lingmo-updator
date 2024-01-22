@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(cute-updator LANGUAGES CXX)
+project(lingmo-updator LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -21,11 +21,11 @@ set(PROJECT_SOURCES
     qml.qrc
 )
 
-add_executable(cute-updator
+add_executable(lingmo-updator
   ${PROJECT_SOURCES}
 )
 
-target_link_libraries(cute-updator
+target_link_libraries(lingmo-updator
   PRIVATE
   Qt5::Core
   Qt5::Quick
@@ -36,13 +36,13 @@ target_link_libraries(cute-updator
 file(GLOB TS_FILES translations/*.ts)
 qt5_create_translation(QM_FILES ${TS_FILES})
 add_custom_target(translations DEPENDS ${QM_FILES} SOURCES ${TS_FILES})
-add_dependencies(cute-updator translations)
+add_dependencies(lingmo-updator translations)
 
-install(TARGETS cute-updator RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-install(FILES ${QM_FILES} DESTINATION /usr/share/cute-updator/translations)
+install(TARGETS lingmo-updator RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES ${QM_FILES} DESTINATION /usr/share/lingmo-updator/translations)
 
 install(FILES
-    cute-updator.desktop
+    lingmo-updator.desktop
     DESTINATION /usr/share/applications/
     COMPONENT Runtime
 )
