@@ -46,6 +46,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}/../*.deb
+        asset_path: /__w/lingmo-updator/*.deb
         asset_name: lingmo-updator-1.9.9-20.deb
         asset_content_type: application/deb
