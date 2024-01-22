@@ -1,15 +1,15 @@
-# LingmoOS 更新
+# LingmoOS Updator
 
-LingmoOS系统更新工具。
+LingmoOS system update tool.
 
-## 依赖包
+## Dependency package
 
-Debian/Ubuntu 依赖包:
+Debian/Ubuntu Dependency:
 ```shell
 sudo apt install cmake libqapt-dev
 ```
 
-## 构建
+## Build
 
 ```shell
 mkdir build
