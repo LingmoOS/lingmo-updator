@@ -7,6 +7,8 @@ permissions: write-all
 on:
   push:
     branches: [ main ]
+    tags:
+      - "v*.*.*"
   pull_request:
     branches: [ main ]
 
@@ -39,13 +41,12 @@ jobs:
         release_name: Release 1.9.9-20
         draft: false
         prerelease: false
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Release
       uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: startsWith(github.ref, 'refs/tags/')
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}
-        asset_name: lingmo-updator-*
-        asset_content_type: application/deb
+        files: |
+          ../lingmo-updator_1.9.9-20_amd64.deb
+          ../lingmo-updator-dbgsym_1.9.9-20_amd64.deb
+          ../lingmo-updator_1.9.9-20_amd64.buildinfo
+          ../lingmo-updator_1.9.9-20_amd64.changes
