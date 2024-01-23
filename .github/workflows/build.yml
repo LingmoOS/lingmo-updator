@@ -42,5 +42,9 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
+        tag_name: 1.9.9-20
+        release_name: Release 1.9.9-20
+        draft: false
+        prerelease: false
         files: |
           lingmo-updator_1.9.9-20_amd64.deb
