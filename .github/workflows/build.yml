@@ -52,7 +52,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ github.workspace }}
         asset_name:
           lingmo-updator_1.9.9-20_amd64.deb
           lingmo-updator-dbgsym_1.9.9-20_amd64.deb
