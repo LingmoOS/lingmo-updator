@@ -39,8 +39,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: 1.9.9-24
-        release_name: Release 1.9.9-24
+        tag_name: 1.9.9-20
+        release_name: Release 1.9.9-20 Packages
         draft: false
         prerelease: false
     - name: Upload Release Asset
@@ -50,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /__w/lingmo-updator/lingmo-updator_1.9.9-20_amd64.deb
+        asset_path: /__w/lingmo-updator/lingmo-updator*
         asset_name: lingmo-updator_1.9.9-20_amd64.deb
         asset_content_type: application/deb
