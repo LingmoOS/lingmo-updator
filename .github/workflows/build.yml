@@ -24,8 +24,7 @@ jobs:
       run: |
         apt-get update -y
         mkdir -p build/
-        ls && ls ../
-        mv *.{cpp,qml,txt,desktop,qrc,h} build/ && mv {debian, images, translations} build/
+        mv !(build) build
     - name: Install the basic dev packages
       run: apt-get install -y equivs curl git devscripts lintian build-essential automake autotools-dev cmake g++
     - name: Install build dependencies
