@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2024 LingmoOS Team.
  *
- * Author:     Kate Leet <kate@lingmoos.com>
+ * Author:     Lingmo OS Team <team@lingmo.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+// #include <QtWebEngine>
 #include <QDBusConnection>
 #include <QQmlContext>
 #include <QTranslator>
@@ -31,9 +32,12 @@
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    // QtWebEngine::initialize();
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
+#endif        
 
+    // QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    // QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QGuiApplication app(argc, argv);
 
     const char *uri = "Lingmo.Updator";

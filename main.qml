@@ -20,17 +20,18 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.0
 import LingmoUI 1.0 as LingmoUI
 import Lingmo.Updator 1.0
 
 LingmoUI.Window {
     id: rootWindow
     width: 640
-    height: 480
+    height: 580
     minimumWidth: 640
-    minimumHeight: 480
+    minimumHeight: 580
     maximumWidth: 640
-    maximumHeight: 480
+    maximumHeight: 580
     visible: true
     title: qsTr("System update")
 
@@ -49,6 +50,15 @@ LingmoUI.Window {
         }
 
         close.accepted = true
+    }
+
+    background.opacity: LingmoUI.Theme.darkMode ? 0.7 : 0.6
+
+    LingmoUI.WindowBlur {
+        view: rootWindow
+        geometry: Qt.rect(rootWindow.x, rootWindow.y, rootWindow.width, rootWindow.height)
+        windowRadius: rootWindow.windowRadius
+        enabled: rootWindow.compositing
     }
 
     DragHandler {

@@ -18,10 +18,12 @@
  */
 
 import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 import LingmoUI 1.0 as LingmoUI
 import Lingmo.Updator 1.0
+
+// import QtWebView 1.15
 
 Item {
     id: control
@@ -36,6 +38,24 @@ Item {
 //        asynchronous: true
 //        visible: !_listView.visible
 //    }
+    // Updator {
+    //     id: updatorHelper
+    // }
+
+    // Connections {
+    //     target: updator// 指向 UpdatorHelper 实例
+    //     // function onUpdatedLogsFetched(content) {
+    //     //     // 将 HTML 内容转换为 data: URL
+    //     //     var dataUrl = "data:text/html;charset=utf-8," + encodeURIComponent(content);
+    //     //     webview.url = dataUrl;
+    //     // }
+    //     onUpdatedLogsFetched: function(content) {
+    //         //updateText.text = content; // 更新 Text 组件的文本内容
+    //     }
+    //     onUpdateTextChanged: function(content) {
+    //         updateText.text = content; // 更新 Text 组件的文本内容
+    //     }
+    // }
 
     ColumnLayout {
         anchors.fill: parent
@@ -85,7 +105,7 @@ Item {
             height: LingmoUI.Units.smallSpacing
             visible: _listView.visible
         }
-
+            
         ListView {
             id: _listView
             model: upgradeableModel
@@ -101,7 +121,7 @@ Item {
 
             delegate: Item {
                 width: ListView.view.width
-                height: 50
+                height: 55
 
                 Rectangle {
                     anchors.fill: parent
@@ -121,7 +141,8 @@ Item {
                         height: 32
                         width: 32
                         sourceSize: Qt.size(width, height)
-                        source: "image://icontheme/" + model.name
+                        // source: "image://icontheme/" + model.name
+                        source: "image://icontheme/" + "lingmo-core"
                         smooth: true
                         antialiasing: true
                     }
@@ -140,13 +161,16 @@ Item {
                             }
 
                             Label {
-                                text: model.name
+                                // text: model.name
+                                text: qsTr("Lingmo OS")
                                 Layout.fillWidth: true
+                                font.pointSize: 11
                             }
 
                             Label {
                                 text: model.version
                                 color: LingmoUI.Theme.disabledTextColor
+                                font.pointSize: 9
                             }
 
                             Item {
@@ -157,12 +181,63 @@ Item {
 
                     // Size
                     Label {
-                        text: model.downloadSize
+                        text: model.installedSize
+                        color: LingmoUI.Theme.disabledTextColor
+                        font.pointSize: 10
+                    }
+                }              
+            }
+
+            Rectangle {
+                // id: _listView
+                anchors.fill: parent
+                anchors.topMargin: LingmoUI.Units.largeSpacing * 5
+                anchors.leftMargin: LingmoUI.Units.largeSpacing
+                anchors.rightMargin: LingmoUI.Units.largeSpacing
+                anchors.bottomMargin: LingmoUI.Units.largeSpacing
+                radius: LingmoUI.Theme.mediumRadius
+                color: LingmoUI.Theme.secondBackgroundColor
+
+                ColumnLayout {
+                    // anchors.fill: parent
+                    anchors.topMargin: LingmoUI.Units.largeSpacing
+                    anchors.leftMargin: LingmoUI.Units.largeSpacing * 3
+                    spacing: LingmoUI.Units.smallSpacing
+                    Label {
+                        text: qsTr(" Update Logs")
+                        color: LingmoUI.Theme.darkMode ? LingmoUI.Theme.textColor : "#363636"
+                        font.pointSize: 11
+                    }
+                    Item {
+                        Layout.fillHeight: true
+                    }
+                    Label {
+                        text: updator.updateInfo
                         color: LingmoUI.Theme.disabledTextColor
                     }
+                    // WebView {
+                    //     id: webview
+                    //     Layout.fillWidth: true
+                    //     Layout.fillHeight: true
+                    //     url: "about:blank" // 初始为空白页面
+                    // }
+                    // Text {
+                    //     id: updateText
+                    //     anchors.fill: parent
+                    //     text: "" // 初始为空字符串
+                    //     horizontalAlignment: Text.AlignHCenter
+                    //     verticalAlignment: Text.AlignVCenter
+                    //     elide: Text.ElideRight
+                    //     wrapMode: Text.WordWrap
+                    // }
                 }
             }
+
+            Item {
+                Layout.fillHeight: true
+            }
         }
+        
 
         Item {
             height: LingmoUI.Units.smallSpacing

@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2024 LingmoOS Team.
  *
- * Author:     Kate Leet <kate@lingmoos.com>
+ * Author:     Lingmo OS Team <team@lingmo.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,13 @@
 #include <QDBusInterface>
 #include <QDBusPendingCall>
 #include <QTimer>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
+#include <QString>
+#include <QDebug>
+#include <QThread>
 #include <QDebug>
 
 const static QString s_dbusName = "com.lingmo.Session";
@@ -34,6 +41,7 @@ UpdatorHelper::UpdatorHelper(QObject *parent)
     , m_checkProgress(0)
     , m_backend(new QApt::Backend(this))
     , m_trans(nullptr)
+    , m_updateText()
 {
     m_backend->init();
 
@@ -55,6 +63,8 @@ void UpdatorHelper::checkUpdates()
     m_checkProgress = 0;
     m_trans = m_backend->updateCache();
     m_trans->setLocale(QLatin1String(setlocale(LC_MESSAGES, 0)));
+
+    fetchURLContent("https://packages.lingmo.org/lingmo/release/stable/hydrogen/release-note/zh-cn/index.html", this, &UpdatorHelper::updatelogs);
 
     connect(m_trans, &QApt::Transaction::progressChanged, this, [=] (int progress) {
         m_checkProgress = progress <= 100 ? progress : 100;
@@ -78,16 +88,28 @@ void UpdatorHelper::checkUpdates()
 
             if (success) {
                 // Add packages.
+                bool lingmo_found = false;
                 for (QApt::Package *package : m_backend->upgradeablePackages()) {
                     if (!package)
                         continue;
 
-                    UpgradeableModel::self()->addPackage(package->name(),
-                                                         package->availableVersion(),
-                                                         package->downloadSize());
-                }
+                    // 检查是否是lingmo包
+                    if (QString::compare(package->name(), "google-chrome-stable", Qt::CaseInsensitive) == 0) {
+                        lingmo_found = true;
+                        // 添加lingmo包
+                        UpgradeableModel::self()->addPackage(package->name(),
+                                                             package->availableVersion(),
+                                                             package->installedSize());
+                        break; // 找到后停止搜索/
+                    }
+            }
 
-                emit checkUpdateFinished();
+                if (lingmo_found) {
+                    emit checkUpdateFinished(); // 发出更新完成信号
+                } else {
+                    // emit checkError("lingmo package not found"); // 发出未找到包的错误信号
+                    emit checkUpdateFinished();
+                }
             } else {
                 emit checkError(errorDetails);
             }
@@ -100,6 +122,31 @@ void UpdatorHelper::checkUpdates()
     });
 
     m_trans->run();
+}
+
+void UpdatorHelper::fetchURLContent(const QString &url, QObject *parent, void (UpdatorHelper::*updateLogsMethod)(const QString&)) {
+    QNetworkAccessManager *manager = new QNetworkAccessManager(parent);
+    QNetworkRequest request(url);
+    connect(manager, &QNetworkAccessManager::finished, parent, [=](QNetworkReply *reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            QString content = QString::fromUtf8(reply->readAll());
+            // Call the updateLogs method with the fetched content
+            (this->*updateLogsMethod)(content);
+        }
+        reply->deleteLater();
+        manager->deleteLater();
+    });
+    manager->get(request);
+}
+
+// Method to be called with fetched content
+void UpdatorHelper::updatelogs(const QString &content) {
+    // Process and integrate the fetched content into the update logs
+    // For example, you could add it to a log file or display it in the UI
+    // qDebug() << "Update logs fetched:" << content;
+    // emit updateLogsFetched(content);
+    m_updateText = content;
+    emit updateTextChanged(content);
 }
 
 /**
@@ -177,4 +224,9 @@ QString UpdatorHelper::statusDetails()
 int UpdatorHelper::checkProgress()
 {
     return m_checkProgress;
+}
+
+QString UpdatorHelper::updateInfo()
+{
+    return m_updateText;
 }

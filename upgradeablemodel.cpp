@@ -79,7 +79,7 @@ QHash<int, QByteArray> UpgradeableModel::roleNames() const
     if (s_roles.isEmpty()) {
         s_roles.insert(UpgradeableModel::NameRole, QByteArrayLiteral("name"));
         s_roles.insert(UpgradeableModel::VersionRole, QByteArrayLiteral("version"));
-        s_roles.insert(UpgradeableModel::DownloadSize, QByteArrayLiteral("downloadSize"));
+        s_roles.insert(UpgradeableModel::InstalledSize, QByteArrayLiteral("installedSize"));
     }
 
     return s_roles;
@@ -104,8 +104,8 @@ QVariant UpgradeableModel::data(const QModelIndex &index, int role) const
         return info.name;
     case UpgradeableModel::VersionRole:
         return info.version;
-    case UpgradeableModel::DownloadSize:
-        return formatByteSize(info.downloadSize, 1);
+    case UpgradeableModel::InstalledSize:
+        return formatByteSize(info.installedSize, 1);
     default:
         break;
     }
@@ -114,13 +114,13 @@ QVariant UpgradeableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void UpgradeableModel::addPackage(const QString &name, const QString &version, quint64 downloadSize)
+void UpgradeableModel::addPackage(const QString &name, const QString &version, quint64 installedSize)
 {
     beginInsertRows(QModelIndex(), 0, 0);
     PackageInfo info;
     info.name = name;
     info.version = version;
-    info.downloadSize = downloadSize;
+    info.installedSize = installedSize;
     m_packages.prepend(info);
     endInsertRows();
 }
