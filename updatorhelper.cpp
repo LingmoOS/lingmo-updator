@@ -31,6 +31,7 @@
 #include <QDebug>
 #include <QThread>
 #include <QDebug>
+#include <QLocale>
 
 const static QString s_dbusName = "com.lingmo.Session";
 const static QString s_pathName = "/Session";
@@ -55,6 +56,17 @@ UpdatorHelper::~UpdatorHelper()
 {
 }
 
+QString formatLocale(const QString &localeName) {
+    // 分割语言代码，获取语言和区域部分
+    QStringList parts = localeName.split('_');
+    if (parts.size() >= 2) {
+        return parts[0] + "-" + parts[1].toLower();
+    } else {
+        // 如果没有区域部分，只返回语言部分
+        return parts[0];
+    }
+}
+
 void UpdatorHelper::checkUpdates()
 {
     if (m_trans)
@@ -64,7 +76,11 @@ void UpdatorHelper::checkUpdates()
     m_trans = m_backend->updateCache();
     m_trans->setLocale(QLatin1String(setlocale(LC_MESSAGES, 0)));
 
-    fetchURLContent("https://packages.lingmo.org/lingmo/release/stable/hydrogen/release-note/zh-cn/index.html", this, &UpdatorHelper::updatelogs);
+    QLocale currentLocale = QLocale::system();
+    QString currentLanguageName = formatLocale(currentLocale.name());
+    qDebug() << "CurrentLanguage:" << currentLanguageName;
+
+    fetchURLContent("https://packages.lingmo.org/lingmo/release/stable/hydrogen/release-note/" + currentLanguageName + "/index.html", this, &UpdatorHelper::updatelogs);
 
     connect(m_trans, &QApt::Transaction::progressChanged, this, [=] (int progress) {
         m_checkProgress = progress <= 100 ? progress : 100;
