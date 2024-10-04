@@ -65,12 +65,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="207"/>
-        <source> Update Logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UpdatePage.qml" line="247"/>
+        <location filename="../UpdatePage.qml" line="257"/>
         <source>Update now</source>
         <translation type="unfinished"></translation>
     </message>

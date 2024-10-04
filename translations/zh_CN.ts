@@ -62,15 +62,14 @@
     <message>
         <location filename="../UpdatePage.qml" line="165"/>
         <source>Lingmo OS</source>
-        <translation type="unfinished"></translation>
+        <translation>灵墨操作系统</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="207"/>
         <source> Update Logs</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished"> 更新日志：</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="247"/>
+        <location filename="../UpdatePage.qml" line="257"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>
@@ -92,7 +91,7 @@
     <message>
         <location filename="../main.qml" line="36"/>
         <source>System update</source>
-        <translation type="unfinished"></translation>
+        <translation>系统更新</translation>
     </message>
 </context>
 </TS>

@@ -189,7 +189,7 @@ Item {
             }
 
             Rectangle {
-                // id: _listView
+                id: _logView
                 anchors.fill: parent
                 anchors.topMargin: LingmoUI.Units.largeSpacing * 5
                 anchors.leftMargin: LingmoUI.Units.largeSpacing
@@ -199,21 +199,27 @@ Item {
                 color: LingmoUI.Theme.secondBackgroundColor
 
                 ColumnLayout {
-                    // anchors.fill: parent
-                    anchors.topMargin: LingmoUI.Units.largeSpacing
-                    anchors.leftMargin: LingmoUI.Units.largeSpacing * 3
+                    anchors.fill: parent
                     spacing: LingmoUI.Units.smallSpacing
-                    Label {
-                        text: qsTr(" Update Logs")
-                        color: LingmoUI.Theme.darkMode ? LingmoUI.Theme.textColor : "#363636"
-                        font.pointSize: 11
-                    }
+
                     Item {
                         Layout.fillHeight: true
                     }
-                    Label {
-                        text: updator.updateInfo
-                        color: LingmoUI.Theme.disabledTextColor
+
+                    ScrollView {
+                        id: view
+                        anchors.fill: parent        // Define the ScrollView's size
+                        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+                        ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+
+                        TextArea {
+                            id: textArea
+                            text: updator.updateInfo
+                            textFormat: TextArea.RichText
+                            color: LingmoUI.Theme.disabledTextColor
+                            readOnly: true // 设置为只读模式，因为是用于显示日志
+                            wrapMode: Text.WordWrap // 确保文本可以换行
+                        }
                     }
                     // WebView {
                     //     id: webview
