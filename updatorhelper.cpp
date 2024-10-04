@@ -50,6 +50,11 @@ UpdatorHelper::UpdatorHelper(QObject *parent)
     m_currentVersion = settings.value("PRETTY_NAME").toString();
 
     QTimer::singleShot(100, this, &UpdatorHelper::checkUpdates);
+
+    connect(m_trans, &QApt::Transaction::downloadSpeedChanged, this, &UpdatorHelper::updateDownloadSpeed);
+    connect(m_trans, &QApt::Transaction::progressChanged, this, &UpdatorHelper::updateTotalProgress);
+    connect(m_trans, &QApt::Transaction::downloadETAChanged, this, &UpdatorHelper::updateRemainingTime);
+
 }
 
 UpdatorHelper::~UpdatorHelper()
@@ -110,7 +115,7 @@ void UpdatorHelper::checkUpdates()
                         continue;
 
                     // 检查是否是lingmo包
-                    if (QString::compare(package->name(), "system-core", Qt::CaseInsensitive) == 0) {
+                    if (QString::compare(package->name(), "nano", Qt::CaseInsensitive) == 0) {
                         lingmo_found = true;
                         // 添加lingmo包
                         UpgradeableModel::self()->addPackage(package->name(),
@@ -163,6 +168,30 @@ void UpdatorHelper::updatelogs(const QString &content) {
     // emit updateLogsFetched(content);
     m_updateText = content;
     emit updateTextChanged(content);
+}
+
+void UpdatorHelper::updateDownloadSpeed(quint64 speed)
+{
+    // 更新下载速度
+    qDebug() << "Download speed:" << speed << "bytes/sec";
+    // 发出信号，如果需要在其他地方显示下载速度
+    emit downloadSpeedChanged(speed);
+}
+
+void UpdatorHelper::updateTotalProgress(double progress)
+{
+    // 更新总进度，确保进度在0到1之间
+    double progressValue = qBound(0.0, progress / 100.0, 1.0);
+    qDebug() << "Total progress:" << progressValue * 100 << "%";
+    emit totalProgressChanged(progressValue);
+}
+
+void UpdatorHelper::updateRemainingTime(quint64 ETA)
+{
+    // 更新剩余时间
+    qDebug() << "Remaining time:" << ETA << "seconds";
+    // 发出信号，如果需要在其他地方显示剩余时间
+    emit remainingTimeChanged(ETA);
 }
 
 /**

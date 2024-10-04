@@ -142,7 +142,8 @@ Item {
                         width: 32
                         sourceSize: Qt.size(width, height)
                         // source: "image://icontheme/" + model.name
-                        source: "image://icontheme/" + "lingmo-core"
+                        // source: "image://icontheme/" + "lingmo-core"
+                        source: "qrc:/images/lingmo.svg"
                         smooth: true
                         antialiasing: true
                     }

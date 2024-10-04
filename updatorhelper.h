@@ -50,6 +50,11 @@ public:
 
     void fetchURLContent(const QString &url, QObject *parent, void (UpdatorHelper::*updateLogsMethod)(const QString&));
 
+    void updateDownloadSpeed(quint64 speed);
+    void updateTotalProgress(double progress);
+    //void updateRemainingTime(quint64 remainingTime);
+    void updateRemainingTime(quint64 ETA);
+
     // 声明 updatelogs 方法
     void updatelogs(const QString &content);
 
@@ -63,6 +68,9 @@ signals:
     void checkError(const QString &details);
     void updateLogsFetched(const QString &content);
     void updateTextChanged(const QString &content);
+    void downloadSpeedChanged(quint64 speed);
+    void totalProgressChanged(double progress);
+    void remainingTimeChanged(quint64 ETA);
 
 private:
     QString m_currentVersion;

@@ -60,7 +60,7 @@
         <translation>当前版本: %1</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="165"/>
+        <location filename="../UpdatePage.qml" line="166"/>
         <source>Lingmo OS</source>
         <translation>灵墨操作系统</translation>
     </message>
@@ -69,7 +69,7 @@
         <translation type="vanished"> 更新日志：</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="257"/>
+        <location filename="../UpdatePage.qml" line="254"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>

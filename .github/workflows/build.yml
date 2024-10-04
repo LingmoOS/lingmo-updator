@@ -39,8 +39,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: 3.0.0-rc1
-        release_name: Release 3.0.0-rc1 Packages
+        tag_name: 3.0.0-rc2
+        release_name: Release 3.0.0-rc2 Packages
         draft: false
         prerelease: false
     - name: Upload Release Asset
@@ -50,6 +50,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: /__w/lingmo-updator/lingmo-updator_3.0.0-rc1_amd64.deb
-        asset_name: lingmo-updator_3.0.0-rc1_amd64.deb
+        asset_path: /__w/lingmo-updator/lingmo-updator_3.0.0-rc2_amd64.deb
+        asset_name: lingmo-updator_3.0.0-rc2_amd64.deb
         asset_content_type: application/deb

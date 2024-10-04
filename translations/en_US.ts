@@ -60,12 +60,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="165"/>
+        <location filename="../UpdatePage.qml" line="166"/>
         <source>Lingmo OS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="257"/>
+        <location filename="../UpdatePage.qml" line="254"/>
         <source>Update now</source>
         <translation type="unfinished"></translation>
     </message>

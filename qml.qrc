@@ -9,5 +9,7 @@
         <file>images/logo.png</file>
         <file>images/check_failed.svg</file>
         <file>images/done.svg</file>
+        <file>images/lingmo.png</file>
+        <file>images/lingmo.svg</file>
     </qresource>
 </RCC>
