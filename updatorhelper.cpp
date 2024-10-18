@@ -85,7 +85,7 @@ void UpdatorHelper::checkUpdates()
     QString currentLanguageName = formatLocale(currentLocale.name());
     qDebug() << "CurrentLanguage:" << currentLanguageName;
 
-    fetchURLContent("https://packages.lingmo.org/lingmo/release/stable/hydrogen/release-note/" + currentLanguageName + "/index.html", this, &UpdatorHelper::updatelogs);
+    fetchURLContent("https://packages.lingmo.org/lingmo/release/notes/" + currentLanguageName + "/index.html", this, &UpdatorHelper::updatelogs);
 
     connect(m_trans, &QApt::Transaction::progressChanged, this, [=] (int progress) {
         m_checkProgress = progress <= 100 ? progress : 100;
