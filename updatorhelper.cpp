@@ -72,6 +72,11 @@ QString formatLocale(const QString &localeName) {
     }
 }
 
+QString UpdatorHelper::kernelVersion()
+{
+    return QSysInfo::kernelVersion();
+}
+
 void UpdatorHelper::checkUpdates()
 {
     if (m_trans)

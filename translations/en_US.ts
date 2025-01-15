@@ -45,27 +45,32 @@
 <context>
     <name>UpdatePage</name>
     <message>
-        <location filename="../UpdatePage.qml" line="84"/>
-        <source>Package updates are available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UpdatePage.qml" line="90"/>
+        <location filename="../UpdatePage.qml" line="79"/>
         <source>Your system is up to date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="96"/>
+        <location filename="../UpdatePage.qml" line="85"/>
         <source>Current Version: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="166"/>
-        <source>Lingmo OS</source>
+        <location filename="../UpdatePage.qml" line="91"/>
+        <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="254"/>
+        <location filename="../UpdatePage.qml" line="98"/>
+        <source>Package updates are available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UpdatePage.qml" line="152"/>
+        <source>New Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UpdatePage.qml" line="245"/>
         <source>Update now</source>
         <translation type="unfinished"></translation>
     </message>

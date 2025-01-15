@@ -26,16 +26,16 @@ import Lingmo.Updator 1.0
 
 LingmoUI.Window {
     id: rootWindow
-    width: 640
-    height: 580
-    minimumWidth: 640
-    minimumHeight: 580
-    maximumWidth: 640
-    maximumHeight: 580
+    width: 800
+    height: 520
+    minimumWidth: 720
+    minimumHeight: 520
+    maximumWidth: 720
+    maximumHeight: 520
     visible: true
     title: qsTr("System update")
 
-    minimizeButtonVisible: false
+    minimizeButtonVisible: true
 
     flags: Qt.FramelessWindowHint
 
@@ -52,7 +52,7 @@ LingmoUI.Window {
         close.accepted = true
     }
 
-    background.opacity: LingmoUI.Theme.darkMode ? 0.7 : 0.6
+    // background.opacity: LingmoUI.Theme.darkMode ? 0.9 : 0.8
 
     LingmoUI.WindowBlur {
         view: rootWindow

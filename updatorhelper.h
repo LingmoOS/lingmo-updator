@@ -33,6 +33,7 @@ class UpdatorHelper : public QObject
     Q_PROPERTY(QString version READ version CONSTANT)
     Q_PROPERTY(QString statusDetails READ statusDetails NOTIFY statusDetailsChanged)
     Q_PROPERTY(QString updateInfo READ updateInfo NOTIFY updateTextChanged)
+    Q_PROPERTY(QString kernelVersion READ kernelVersion CONSTANT)
     Q_PROPERTY(int checkProgress READ checkProgress NOTIFY checkProgressChanged)
 
 public:
@@ -47,6 +48,7 @@ public:
     QString statusDetails();
     int checkProgress();
     QString updateInfo();
+    QString kernelVersion();
 
     void fetchURLContent(const QString &url, QObject *parent, void (UpdatorHelper::*updateLogsMethod)(const QString&));
 

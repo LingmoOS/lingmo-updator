@@ -45,31 +45,44 @@
 <context>
     <name>UpdatePage</name>
     <message>
-        <location filename="../UpdatePage.qml" line="84"/>
+        <source>System update</source>
+        <translation type="obsolete">系统更新</translation>
+    </message>
+    <message>
+        <location filename="../UpdatePage.qml" line="98"/>
         <source>Package updates are available</source>
         <translation>有可用的软件更新</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="90"/>
+        <location filename="../UpdatePage.qml" line="79"/>
         <source>Your system is up to date</source>
         <translation>您的系统已是最新</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="96"/>
+        <location filename="../UpdatePage.qml" line="85"/>
         <source>Current Version: %1</source>
         <translation>当前版本: %1</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="166"/>
+        <location filename="../UpdatePage.qml" line="91"/>
+        <source>%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UpdatePage.qml" line="152"/>
+        <source>New Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Lingmo OS</source>
-        <translation>灵墨操作系统</translation>
+        <translation type="vanished">灵墨操作系统</translation>
     </message>
     <message>
         <source> Update Logs</source>
         <translation type="vanished"> 更新日志：</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="254"/>
+        <location filename="../UpdatePage.qml" line="245"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>

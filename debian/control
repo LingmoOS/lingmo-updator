@@ -5,6 +5,7 @@ Maintainer: Lingmo OS <lingmo@lingmo.org>
 Build-Depends:  cmake,
 		libqapt-dev,
 		qtbase5-dev,
+		libqapt3-runtime,
 		qtdeclarative5-dev,
 		qml-module-qtwebview,
 		qtwebengine5-dev,

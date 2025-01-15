@@ -28,35 +28,6 @@ import Lingmo.Updator 1.0
 Item {
     id: control
 
-//    Image {
-//        anchors.top: parent.top
-//        anchors.horizontalCenter: parent.horizontalCenter
-//        width: 167
-//        height: 26
-//        sourceSize: Qt.size(500, 76)
-//        source: "qrc:/images/logo.png"
-//        asynchronous: true
-//        visible: !_listView.visible
-//    }
-    // Updator {
-    //     id: updatorHelper
-    // }
-
-    // Connections {
-    //     target: updator// 指向 UpdatorHelper 实例
-    //     // function onUpdatedLogsFetched(content) {
-    //     //     // 将 HTML 内容转换为 data: URL
-    //     //     var dataUrl = "data:text/html;charset=utf-8," + encodeURIComponent(content);
-    //     //     webview.url = dataUrl;
-    //     // }
-    //     onUpdatedLogsFetched: function(content) {
-    //         //updateText.text = content; // 更新 Text 组件的文本内容
-    //     }
-    //     onUpdateTextChanged: function(content) {
-    //         updateText.text = content; // 更新 Text 组件的文本内容
-    //     }
-    // }
-
     ColumnLayout {
         anchors.fill: parent
 
@@ -80,10 +51,28 @@ Item {
             visible: !_listView.visible
         }
 
-        Label {
-            text: "<b>" + qsTr("Package updates are available") + "</b>"
+        ColumnLayout {
+            anchors.fill: parent
             visible: _listView.count !== 0
-            Layout.alignment: Qt.AlignHCenter
+
+            Item {
+                height: LingmoUI.Units.largeSpacing * 2
+                visible: _listView.visible
+            }
+
+            Image {
+                anchors {
+                    // top: parent.top
+                    // bottom: parent.bottom
+                    horizontalCenter: parent.horizontalCenter
+                }
+                width: 350
+                sourceSize: Qt.size(width, height)
+                source: LingmoUI.Theme.darkMode ? "qrc:/images/dark/logo.svg" : "qrc:/images/light/logo.svg"
+                smooth: true
+                antialiasing: true
+                Layout.alignment: Qt.AlignVCenter
+            }
         }
 
         Label {
@@ -95,6 +84,22 @@ Item {
         Label {
             text: qsTr("Current Version: %1").arg(updator.version)
             Layout.alignment: Qt.AlignHCenter
+            visible: _listView.count === 0
+        }
+
+        Label {
+            text: qsTr("%1").arg(updator.version) + " | Linux " + updator.kernelVersion
+            Layout.alignment: Qt.AlignHCenter
+            font.pointSize: 11
+            color: LingmoUI.Theme.disabledTextColor
+        }
+
+        Label {
+            text: "<b>" + qsTr("Package updates are available") + "</b>"
+            visible: _listView.count !== 0
+            Layout.alignment: Qt.AlignHCenter
+            font.pointSize: 14
+            font.bold: true
         }
 
         Item {
@@ -121,63 +126,37 @@ Item {
 
             delegate: Item {
                 width: ListView.view.width
-                height: 55
-
+                height: 65
                 Rectangle {
+                    id: _verView
                     anchors.fill: parent
+                    // anchors.topMargin: LingmoUI.Units.largeSpacing * 2
                     anchors.leftMargin: LingmoUI.Units.largeSpacing
                     anchors.rightMargin: LingmoUI.Units.largeSpacing
-                    color: LingmoUI.Theme.secondBackgroundColor
+                    anchors.bottom: _logView.top
+                    // anchors.bottomMargin: LingmoUI.Units.largeSpacing
                     radius: LingmoUI.Theme.mediumRadius
+                    color: LingmoUI.Theme.secondBackgroundColor
                 }
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.leftMargin: LingmoUI.Units.largeSpacing * 1.5
-                    anchors.rightMargin: LingmoUI.Units.largeSpacing * 1.5
+                    anchors.leftMargin: LingmoUI.Units.largeSpacing * 2
+                    anchors.rightMargin: LingmoUI.Units.largeSpacing * 2
+                    anchors.bottom: _logView.top
+                    anchors.bottomMargin: LingmoUI.Units.largeSpacing * 1.5
                     spacing: LingmoUI.Units.smallSpacing
 
-                    Image {
-                        height: 32
-                        width: 32
-                        sourceSize: Qt.size(width, height)
-                        // source: "image://icontheme/" + model.name
-                        // source: "image://icontheme/" + "lingmo-core"
-                        source: "qrc:/images/lingmo.svg"
-                        smooth: true
-                        antialiasing: true
+                    Label {
+                        // text: model.name
+                        text: qsTr("New Version:") + " " + model.version
+                        // Layout.fillWidth: true
+                        font.pointSize: 11
+                        Layout.alignment: Qt.AlignLeft
                     }
 
-                    // Name and version
                     Item {
-                        Layout.fillWidth: true
                         Layout.fillHeight: true
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            spacing: 0
-
-                            Item {
-                                Layout.fillHeight: true
-                            }
-
-                            Label {
-                                // text: model.name
-                                text: qsTr("Lingmo OS")
-                                Layout.fillWidth: true
-                                font.pointSize: 11
-                            }
-
-                            Label {
-                                text: model.version
-                                color: LingmoUI.Theme.disabledTextColor
-                                font.pointSize: 9
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                            }
-                        }
                     }
 
                     // Size
@@ -185,23 +164,39 @@ Item {
                         text: model.installedSize
                         color: LingmoUI.Theme.disabledTextColor
                         font.pointSize: 10
+                        font.bold: true
+                        Layout.alignment: Qt.AlignRight
                     }
-                }              
+                }
+            }
+
+            Rectangle {
+                width: parent.width
+                height: 1
+                color: LingmoUI.Theme.disabledTextColor
+                opacity: LingmoUI.Theme.darkMode ? 0.4 : 0.4
+                anchors.left: _listView.left
+                anchors.right: _listView.right
+                anchors.leftMargin: LingmoUI.Units.largeSpacing * 2
+                anchors.rightMargin: LingmoUI.Units.largeSpacing * 2
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: _logView.top
+                anchors.bottomMargin: LingmoUI.Units.largeSpacing / 10
             }
 
             Rectangle {
                 id: _logView
                 anchors.fill: parent
-                anchors.topMargin: LingmoUI.Units.largeSpacing * 5
+                anchors.topMargin: LingmoUI.Units.largeSpacing * 4
                 anchors.leftMargin: LingmoUI.Units.largeSpacing
                 anchors.rightMargin: LingmoUI.Units.largeSpacing
-                anchors.bottomMargin: LingmoUI.Units.largeSpacing
+                anchors.bottomMargin: LingmoUI.Units.largeSpacing / 2
                 radius: LingmoUI.Theme.mediumRadius
                 color: LingmoUI.Theme.secondBackgroundColor
 
                 ColumnLayout {
                     anchors.fill: parent
-                    spacing: LingmoUI.Units.smallSpacing
+                    // spacing: LingmoUI.Units.smallSpacing
 
                     Item {
                         Layout.fillHeight: true
@@ -211,7 +206,7 @@ Item {
                         id: view
                         anchors.fill: parent        // Define the ScrollView's size
                         ScrollBar.vertical.policy: ScrollBar.AsNeeded
-                        ScrollBar.horizontal.policy: ScrollBar.AsNeeded
+                        // ScrollBar.horizontal.policy: ScrollBar.AsNeeded
 
                         TextArea {
                             id: textArea
@@ -220,23 +215,13 @@ Item {
                             color: LingmoUI.Theme.disabledTextColor
                             readOnly: true // 设置为只读模式，因为是用于显示日志
                             wrapMode: Text.WordWrap // 确保文本可以换行
+                            background: Rectangle {
+                                color: "transparent" // 设置背景为透明
+                                border.color: "transparent" // 设置边框颜色为透明
+                                border.width: 0 // 设置边框宽度为0
+                            }
                         }
                     }
-                    // WebView {
-                    //     id: webview
-                    //     Layout.fillWidth: true
-                    //     Layout.fillHeight: true
-                    //     url: "about:blank" // 初始为空白页面
-                    // }
-                    // Text {
-                    //     id: updateText
-                    //     anchors.fill: parent
-                    //     text: "" // 初始为空字符串
-                    //     horizontalAlignment: Text.AlignHCenter
-                    //     verticalAlignment: Text.AlignVCenter
-                    //     elide: Text.ElideRight
-                    //     wrapMode: Text.WordWrap
-                    // }
                 }
             }
 
