@@ -21,7 +21,9 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import LingmoUI 1.0 as LingmoUI
+import QtQuick.Templates 2.12 as T
 import Lingmo.Updator 1.0
+import QtQuick.Controls.impl 2.12
 
 Item {
     id: control

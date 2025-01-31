@@ -69,8 +69,8 @@
     <name>UpdatingPage</name>
     <message>
         <location filename="../UpdatingPage.qml" line="43"/>
-        <source>Updating, please wait</source>
-        <translation type="unfinished">Обновляем, подождите</translation>
+        <source>Updating, This may take a long time, please be patient</source>
+        <translation type="unfinished">Это может занять много времени, пожалуйста, проявите терпение.</translation>
     </message>
 </context>
 <context>

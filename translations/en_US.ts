@@ -27,17 +27,17 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../HomePage.qml" line="65"/>
+        <location filename="../HomePage.qml" line="67"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HomePage.qml" line="80"/>
+        <location filename="../HomePage.qml" line="117"/>
         <source>Check for update failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../HomePage.qml" line="123"/>
+        <location filename="../HomePage.qml" line="160"/>
         <source>Recheck</source>
         <translation type="unfinished"></translation>
     </message>
@@ -70,7 +70,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="245"/>
+        <location filename="../UpdatePage.qml" line="239"/>
         <source>Update now</source>
         <translation type="unfinished"></translation>
     </message>

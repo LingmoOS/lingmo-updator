@@ -125,7 +125,7 @@ void UpdatorHelper::checkUpdates()
                         // 添加lingmo包
                         UpgradeableModel::self()->addPackage(package->name(),
                                                              package->availableVersion(),
-                                                             package->installedSize());
+                                                             package->downloadSize());
                         break; // 找到后停止搜索/
                     }
             }

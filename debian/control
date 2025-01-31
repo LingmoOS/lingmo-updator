@@ -1,7 +1,7 @@
 Source: lingmo-updator
 Section: devel
 Priority: optional
-Maintainer: Lingmo OS <lingmo@lingmo.org>
+Maintainer: Lingmo OS Team <team@lingmo.org>
 Build-Depends:  cmake,
 		libqapt-dev,
 		qtbase5-dev,
@@ -20,4 +20,4 @@ Rules-Requires-Root: no
 Package: lingmo-updator
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: LingmoOS Updator.
+Description: Lingmo OS Updator.

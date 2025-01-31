@@ -27,17 +27,17 @@
 <context>
     <name>HomePage</name>
     <message>
-        <location filename="../HomePage.qml" line="65"/>
+        <location filename="../HomePage.qml" line="67"/>
         <source>Checking for updates...</source>
         <translation>正在检查更新...</translation>
     </message>
     <message>
-        <location filename="../HomePage.qml" line="80"/>
+        <location filename="../HomePage.qml" line="117"/>
         <source>Check for update failure</source>
         <translation>检查更新失败</translation>
     </message>
     <message>
-        <location filename="../HomePage.qml" line="123"/>
+        <location filename="../HomePage.qml" line="160"/>
         <source>Recheck</source>
         <translation>重新检查</translation>
     </message>
@@ -82,7 +82,7 @@
         <translation type="vanished"> 更新日志：</translation>
     </message>
     <message>
-        <location filename="../UpdatePage.qml" line="245"/>
+        <location filename="../UpdatePage.qml" line="239"/>
         <source>Update now</source>
         <translation>立即更新</translation>
     </message>
@@ -91,8 +91,8 @@
     <name>UpdatingPage</name>
     <message>
         <location filename="../UpdatingPage.qml" line="43"/>
-        <source>Updating, please wait</source>
-        <translation>正在更新，请稍候</translation>
+        <source>Updating, This may take a long time, please be patient</source>
+        <translation>正在更新，这可能需要很长时间，请耐心等待</translation>
     </message>
 </context>
 <context>

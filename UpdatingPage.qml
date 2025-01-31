@@ -40,7 +40,7 @@ Item {
         }
 
         Label {
-            text: qsTr("Updating, please wait")
+            text: qsTr("Updating, This may take a long time, please be patient")
             Layout.alignment: Qt.AlignHCenter
         }
 
